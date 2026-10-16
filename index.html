@@ -24,7 +24,19 @@ button,input{font:inherit}.page{display:none;min-height:100svh;padding:36px 18px
 </style>
 </head>
 <body>
-<audio id="friendshipSong" src="song.mp3" loop preload="auto"></audio>
+
+<audio
+  id="friendshipSong"
+  src="https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/nastelbom-happy-birthday-495860.mp3"
+  autoplay
+  loop
+  preload="auto"
+></audio>
+
+<button onclick="document.getElementById('friendshipSong').play()">
+  🎵 Play Birthday Song
+</button>
+
 
 <!-- PAGE 1: COUNTDOWN -->
 <section class="page active" id="page1">
@@ -101,14 +113,34 @@ const correctAnswers = {
 };
 
 // Put six photos in photos/photo1.jpg ... photos/photo6.jpg
-const photos=[
- {src:"photos/photo1.jpg",caption:"Our best memory 💛"},
- {src:"photos/photo2.jpg",caption:"Partners in crime 😎"},
- {src:"photos/photo3.jpg",caption:"The funniest moment 😂"},
- {src:"photos/photo4.jpg",caption:"A memory to keep ✨"},
- {src:"photos/photo5.jpg",caption:"Bestie energy forever 💌"},
- {src:"photos/photo6.jpg",caption:"One for the memories ♾️"}
+
+const photos = [
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp Image 2026-10-16 at 2.12.57 PM.jpeg",
+    caption: "Our best memory 💛"
+  },
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.58%20PM.jpeg",
+    caption: "Partners in crime 😎"
+  },
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM%20(1).jpeg",
+    caption: "The funniest moment 😂"
+  },
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM%20(2).jpeg",
+    caption: "A memory to keep ✨"
+  },
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM.jpeg",
+    caption: "Bestie energy forever 💌"
+  },
+  {
+    src: "https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.13.00%20PM.jpeg",
+    caption: "One for the memories ♾️"
+  }
 ];
+
 const $=id=>document.getElementById(id);
 function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
 function updateTimer(){
