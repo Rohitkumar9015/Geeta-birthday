@@ -21,6 +21,135 @@ button,input{font:inherit}.page{display:none;min-height:100svh;padding:36px 18px
 .floaty{position:fixed;bottom:-45px;pointer-events:none;z-index:10;animation:rise 5s linear forwards}.star{position:fixed;color:#fff1c9;pointer-events:none;z-index:-1;animation:twinkle 2s infinite alternate}
 @keyframes pulse{50%{transform:scale(1.1)}}@keyframes float{50%{transform:translateY(-10px) rotate(3deg)}}@keyframes rise{to{transform:translateY(-115svh) rotate(30deg);opacity:0}}@keyframes twinkle{to{opacity:.2;transform:scale(.7)}}
 @media(max-width:500px){.orbit-wrap{height:220px}.orbit-card{width:76px;height:102px}.feature-photo{height:310px}.gallery img{height:125px}.panel{padding:18px 12px}}
+```css
+/* Geeta Bestie Quiz Styling */
+#page3 {
+  padding: 35px 16px 50px;
+  gap: 12px;
+}
+
+#page3 .panel {
+  width: min(720px, 100%);
+  padding: 25px 20px;
+  border: 1px solid rgba(255, 190, 225, 0.35);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+#page3 .quiz-list {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  margin: 18px auto;
+  text-align: left;
+}
+
+#page3 .question {
+  padding: 18px;
+  border: 1px solid rgba(255, 180, 220, 0.25);
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 180, 220, 0.10),
+    rgba(220, 180, 255, 0.08)
+  );
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+#page3 .question:focus-within {
+  border-color: #ffafd5;
+  transform: translateY(-2px);
+}
+
+#page3 .question > label:first-child {
+  display: block;
+  margin-bottom: 13px;
+  color: #ffe0ef;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+#page3 .question label:has(input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 9px 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#page3 input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  accent-color: #ff9fc8;
+  cursor: pointer;
+}
+
+#page3 .question input:not([type="radio"]) {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 190, 225, 0.35);
+  border-radius: 12px;
+  background: rgba(20, 10, 30, 0.75);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+#page3 .question input::placeholder {
+  color: #c7b4d0;
+}
+
+#page3 .question input:focus {
+  border-color: #ffafd5;
+  box-shadow: 0 0 0 3px rgba(255, 159, 200, 0.12);
+}
+
+#page3 .btn {
+  margin-top: 12px;
+}
+
+#page3 #quizFeedback {
+  min-height: 24px;
+  color: #ffd0e5;
+  font-weight: 600;
+  text-align: center;
+}
+
+#page3 .hidden {
+  display: none !important;
+}
+
+@media (max-width: 500px) {
+  #page3 .panel {
+    padding: 17px 12px;
+  }
+
+  #page3 .question {
+    padding: 14px;
+  }
+
+  #page3 .question > label:first-child {
+    font-size: 14px;
+  }
+
+  #page3 .question label:has(input[type="radio"]) {
+    font-size: 13px;
+  }
+}
+```
 </style>
 </head>
 <body>
@@ -63,20 +192,59 @@ button,input{font:inherit}.page{display:none;min-height:100svh;padding:36px 18px
 </section>
 
 <!-- PAGE 3: QUIZ -->
+```html
 <section class="page" id="page3">
-<p class="eyebrow">Page 3 · Bestie challenge</p><h1 class="script">Birthday Gift Quiz 🧠💛</h1>
-<p>Remember these iconic Geeta & Rohit moments! Answer all five. Your reward is a food treat — you choose what to eat. 🍕🍟🍰</p>
-<div class="panel"><form id="quizForm"><div class="quiz-list">
-<div class="question"><label for="q1">1. Geeta ka mood swing kab hota hai? 😅</label><input id="q1" placeholder="Apna answer likho..." required></div>
-<div class="question"><label for="q2">2. Rohit ka birthday kab hai? 🎂</label><input id="q2" placeholder="DD-MM-YYYY" required></div>
-<div class="question"><label for="q3">3. Geeta aur Rohit jewelry ka photoshoot karne ke liye kahan gaye the? 📸</label><input id="q3" placeholder="Jagah ka naam..." required></div>
-<div class="question"><label for="q4">4. Geeta aur Rohit IBA Craft mein daily kya share karte the? 🍬</label><input id="q4" placeholder="Ek sweet sa answer..." required></div>
-<div class="question"><label for="q5">5. Geeta aur Rohit, Didi aur Jijaji ke saath kahan ghoomne gaye the? 🚗</label><input id="q5" placeholder="Place ka naam..." required></div>
-</div>
-<p class="small-help">Before using the quiz, fill in the correct answers for questions 1, 3, and 5 in the code. Q2 and Q4 are already filled in.</p>
-<button class="btn" type="submit">Submit Answers & Unlock Gift 🎁</button><p id="quizFeedback" aria-live="polite"></p>
-</form></div>
+  <p class="eyebrow">Page 3 · Bestie challenge 💛</p>
+  <h1 class="script">Geeta's Bestie Quiz 🎀</h1>
+  <p>Geeta, let's discover your favourite things! 💕</p>
+
+  <div class="panel">
+    <form id="quizForm">
+      <div class="quiz-list">
+
+        <div class="question">
+          <label>1. Geeta ko fast food mein kya pasand hai? 😋</label>
+          <label><input type="radio" name="q1" value="Momos" required> A. Momos</label>
+          <label><input type="radio" name="q1" value="Cumin"> B. Cumin</label>
+          <label><input type="radio" name="q1" value="Golgappe"> C. Golgappe</label>
+          <label><input type="radio" name="q1" value="Other"> D. Other</label>
+          <input id="otherFood" class="hidden" placeholder="Apna favourite food likho...">
+        </div>
+
+        <div class="question">
+          <label>2. Geeta ki favourite drink kya hai? 🥤</label>
+          <input name="q2" placeholder="Drink ka naam..." required>
+        </div>
+
+        <div class="question">
+          <label>3. Geeta ka favourite colour kya hai? 🎨</label>
+          <input name="q3" placeholder="Colour ka naam..." required>
+        </div>
+
+        <div class="question">
+          <label>4. Geeta ko ghoomne ke liye kya pasand hai? 🚗</label>
+          <label><input type="radio" name="q4" value="Mountains" required> A. Mountains 🏔️</label>
+          <label><input type="radio" name="q4" value="Beach"> B. Beach 🏖️</label>
+          <label><input type="radio" name="q4" value="Shopping"> C. Shopping 🛍️</label>
+          <label><input type="radio" name="q4" value="All"> D. All of these 💖</label>
+        </div>
+
+        <div class="question">
+          <label>5. Geeta ko birthday par sabse zyada kya chahiye? 🎁</label>
+          <label><input type="radio" name="q5" value="Food Treat" required> A. Food treat 🍕</label>
+          <label><input type="radio" name="q5" value="Shopping"> B. Shopping 🛍️</label>
+          <label><input type="radio" name="q5" value="Surprise"> C. Surprise 🎁</label>
+          <label><input type="radio" name="q5" value="Everything"> D. Sab kuch! 😍</label>
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit">Submit Answers & Unlock Gift 🎁</button>
+      <p id="quizFeedback" aria-live="polite"></p>
+    </form>
+  </div>
 </section>
+```
 
 <!-- PAGE 4: FOOD GIFT REWARD -->
 <section class="page" id="page4">
@@ -185,13 +353,49 @@ $("orbitWrap").addEventListener("pointerdown",e=>{dragging=true;dragMoved=false;
 $("orbitWrap").addEventListener("pointermove",e=>{if(!dragging)return;const dx=e.clientX-lastX;if(Math.abs(dx)>3)dragMoved=true;rotation+=dx*.008;lastX=e.clientX;positionOrbit()});
 function stopDrag(){dragging=false;setTimeout(()=>dragMoved=false,120)}
 $("orbitWrap").addEventListener("pointerup",stopDrag);$("orbitWrap").addEventListener("pointercancel",stopDrag);$("orbitWrap").addEventListener("lostpointercapture",stopDrag);
-$("quizForm").addEventListener("submit",e=>{
- e.preventDefault();
- if(Object.values(correctAnswers).some(a=>a.startsWith("EDIT_ME"))){$("quizFeedback").textContent="Edit the correctAnswers object for questions 1, 3 and 5 in the code, then save and refresh. 💛";return;}
- const norm=s=>s.trim().toLowerCase().replace(/[.,!?]/g,"").replace(/\s+/g," ");
- let score=0;for(let i=1;i<=5;i++)if(norm($("q"+i).value)===norm(correctAnswers["q"+i]))score++;
- $("quizFeedback").textContent=`You got ${score}/5 correct! 🎉 Your food reward is waiting!`;
- setTimeout(()=>{showPage(4);confettiHugs()},1000);
+
+const quizForm = document.getElementById("quizForm");
+const otherFood = document.getElementById("otherFood");
+
+// "Other" select karne par text box dikhao.
+document.querySelectorAll('input[name="q1"]').forEach(option => {
+  option.addEventListener("change", () => {
+    const isOther = option.checked && option.value === "Other";
+
+    otherFood.classList.toggle("hidden", !isOther);
+    otherFood.required = isOther;
+
+    if (!isOther) {
+      otherFood.value = "";
+    }
+  });
+});
+
+quizForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const answers = new FormData(quizForm);
+  let food = answers.get("q1");
+
+  if (food === "Other") {
+    food = otherFood.value.trim();
+
+    if (!food) {
+      otherFood.focus();
+      return;
+    }
+  }
+
+  // Food reward page par selected food fill karo.
+  document.getElementById("foodChoice").value = food;
+
+  document.getElementById("quizFeedback").textContent =
+    "Yay Geeta! 💖 Your answers are saved. Your food treat is waiting! 🎉";
+
+  setTimeout(() => {
+    showPage(4);
+    confettiHugs();
+  }, 1200);
 });
 $("saveFood").addEventListener("click",()=>{
  const food=$("foodChoice").value.trim();
