@@ -18,13 +18,18 @@ button,input{font:inherit}.page{display:none;min-height:100svh;padding:36px 18px
 .quiz-list{width:min(720px,100%);display:grid;gap:13px;text-align:left;margin:18px auto}.question{padding:16px;border:1px solid #ffffff25;border-radius:17px;background:#ffffff0b}.question label{display:block;color:#ffe2f0;font-weight:600;font-size:14px;margin-bottom:10px}.question input,.food-input{width:100%;padding:12px 14px;border:1px solid #ffffff30;border-radius:12px;background:#160e25;color:#fff;outline:none}.question input::placeholder,.food-input::placeholder{color:#bba9c7}
 .gift-emoji{font-size:90px;animation:float 2.5s ease-in-out infinite}.gift-card{max-width:620px;border:1px solid #ffdaed45;border-radius:26px;padding:26px;background:linear-gradient(140deg,#ffffff10,#ffb7d510)}.hug-cloud{font-size:clamp(30px,7vw,58px);line-height:1.5;max-width:680px;overflow-wrap:anywhere}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:min(620px,100%);margin:20px auto}.gallery figure{margin:0;padding:7px 7px 12px;background:#fff7fb;border-radius:12px;transform:rotate(-1deg)}.gallery figure:nth-child(even){transform:rotate(1deg)}.gallery img{width:100%;height:155px;object-fit:cover;border-radius:7px}.gallery figcaption{padding-top:7px;color:#93436f;font:18px 'Dancing Script',cursive}
-.floaty{position:fixed;bottom:-45px;pointer-events:none;z-index:10;animation:rise 5s linear forwards}.star{position:fixed;color:#fff1c9;pointer-events:none;z-index:-1;animation:twinkle 2s infinite alternate}
+.music-player{position:fixed;right:12px;bottom:12px;z-index:50;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 24px);padding:10px 12px;border:1px solid #ffffff45;border-radius:16px;background:#21132bf2;box-shadow:0 8px 28px #0005;backdrop-filter:blur(10px)}.music-player>span{font-size:24px}.music-label{display:flex;flex-direction:column;gap:3px;text-align:left}.music-label strong{font-size:11px;color:#ffe2f0}.music-label small{font-size:9px;color:#ddc8e8}.music-toggle{margin:0;padding:9px 12px;white-space:nowrap;font-size:11px}@media(max-width:420px){.music-player{right:7px;bottom:7px;gap:7px;padding:8px}.music-label small{display:none}.music-toggle{padding:8px 10px;font-size:10px}}\n.floaty{position:fixed;bottom:-45px;pointer-events:none;z-index:10;animation:rise 5s linear forwards}.star{position:fixed;color:#fff1c9;pointer-events:none;z-index:-1;animation:twinkle 2s infinite alternate}
 @keyframes pulse{50%{transform:scale(1.1)}}@keyframes float{50%{transform:translateY(-10px) rotate(3deg)}}@keyframes rise{to{transform:translateY(-115svh) rotate(30deg);opacity:0}}@keyframes twinkle{to{opacity:.2;transform:scale(.7)}}
 @media(max-width:500px){.orbit-wrap{height:220px}.orbit-card{width:76px;height:102px}.feature-photo{height:310px}.gallery img{height:125px}.panel{padding:18px 12px}}
 </style>
 </head>
 <body>
-<audio id="friendshipSong" src="nastelbom-happy-birthday-495860" loop preload="auto"></audio>
+<audio id="friendshipSong" src="https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/nastelbom-happy-birthday-495860.mp3" loop preload="none"></audio>
+<div class="music-player" role="group" aria-label="Birthday background music">
+  <span aria-hidden="true">🎵</span>
+  <div class="music-label"><strong>Birthday Song</strong><small>Happy Birthday for Geeta</small></div>
+  <button type="button" class="btn music-toggle" id="musicToggle">▶ Play music</button>
+</div>
 
 <!-- PAGE 1: COUNTDOWN -->
 <section class="page active" id="page1">
@@ -100,14 +105,14 @@ const correctAnswers = {
  q5:"EDIT_ME_TRIP_PLACE"
 };
 
-// Put six photos in photos/photo1.jpg ... photos/photo6.jpg
+// IMPORTANT: upload your six real photos into a photos/ folder named photo1.jpg through photo6.jpg.
 const photos=[
- {src:"WhatsApp Image 2026-10-16 at 2.12.5",caption:"Our best memory 💛"},
- {src:"WhatsApp Image 2026-10-16 at 2.12.",caption:"Partners in crime 😎"},
- {src:"WhatsApp Image 2026-10-16 at 2.12.59 ",caption:"The funniest moment 😂"},
- {src:"WhatsApp Image 2026-10-16 at 2.12.",caption:"A memory to keep ✨"},
- {src:"WhatsApp Image 2026-10-16 at 2.12.59 ",caption:"Bestie energy forever 💌"},
- {src:"WhatsApp Image 2026-10-16 at 2.13",caption:"One for the memories ♾️"}
+  {src:"photos/photo1.jpg",caption:"Our best memory 💛"},
+  {src:"photos/photo2.jpg",caption:"Partners in crime 😎"},
+  {src:"photos/photo3.jpg",caption:"The funniest moment 😂"},
+  {src:"photos/photo4.jpg",caption:"A memory to keep ✨"},
+  {src:"photos/photo5.jpg",caption:"Bestie energy forever 💌"},
+  {src:"photos/photo6.jpg",caption:"One for the memories ♾️"}
 ];
 const $=id=>document.getElementById(id);
 function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
@@ -163,9 +168,27 @@ let hugCount=0;$("hugButton").addEventListener("click",()=>{hugCount++;$("hugMes
 $("restartButton").addEventListener("click",()=>{$("quizForm").reset();$("quizFeedback").textContent="";$("foodChoice").value="";$("foodMessage").textContent="";showPage(1)});
 for(let i=0;i<40;i++){const s=document.createElement("span");s.className="star";s.textContent="✦";s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";s.style.fontSize=8+Math.random()*12+"px";s.style.animationDelay=Math.random()*3+"s";document.body.appendChild(s)}
 window.addEventListener("resize",positionOrbit);renderOrbit();updateTimer();setInterval(updateTimer,1000);requestAnimationFrame(animate);
-document.addEventListener("click",()=>{
- const audio=$("friendshipSong");
- if($("page2").classList.contains("active") && audio.paused){audio.play().catch(()=>{});}
+const birthdayAudio = $("friendshipSong");
+const musicToggle = $("musicToggle");
+musicToggle.addEventListener("click", async () => {
+  if (birthdayAudio.paused) {
+    try {
+      await birthdayAudio.play();
+      musicToggle.textContent = "⏸ Pause music";
+      musicToggle.setAttribute("aria-pressed", "true");
+    } catch (err) {
+      musicToggle.textContent = "▶ Try again";
+      alert("Song load nahi hua. GitHub par MP3 file ka naam aur link check karein.");
+    }
+  } else {
+    birthdayAudio.pause();
+    musicToggle.textContent = "▶ Play music";
+    musicToggle.setAttribute("aria-pressed", "false");
+  }
+});
+birthdayAudio.addEventListener("error", () => {
+  musicToggle.title = "Song file could not be loaded. Check the GitHub MP3 URL.";
+});}
 });
 </script>
 </body>
