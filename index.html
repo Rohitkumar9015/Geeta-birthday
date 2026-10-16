@@ -105,14 +105,14 @@ const correctAnswers = {
  q5:"EDIT_ME_TRIP_PLACE"
 };
 
-// IMPORTANT: upload your six real photos into a photos/ folder named photo1.jpg through photo6.jpg.
+// Photo files are in the repository root; filenames must exactly match the GitHub file list.
 const photos=[
-  {src:"photos/photo1.jpg",caption:"Our best memory 💛"},
-  {src:"photos/photo2.jpg",caption:"Partners in crime 😎"},
-  {src:"photos/photo3.jpg",caption:"The funniest moment 😂"},
-  {src:"photos/photo4.jpg",caption:"A memory to keep ✨"},
-  {src:"photos/photo5.jpg",caption:"Bestie energy forever 💌"},
-  {src:"photos/photo6.jpg",caption:"One for the memories ♾️"}
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.57%20PM.jpeg",caption:"Our best memory 💛"},
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.58%20PM.jpeg",caption:"Partners in crime 😎"},
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM%20%281%29.jpeg",caption:"The funniest moment 😂"},
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM%20%282%29.jpeg",caption:"A memory to keep ✨"},
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.12.59%20PM.jpeg",caption:"Bestie energy forever 💌"},
+  {src:"https://raw.githubusercontent.com/Rohitkumar9015/Geeta-birthday/main/WhatsApp%20Image%202026-10-16%20at%202.13.00%20PM.jpeg",caption:"One for the memories ♾️"}
 ];
 const $=id=>document.getElementById(id);
 function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
