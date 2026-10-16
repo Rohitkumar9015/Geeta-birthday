@@ -43,6 +43,7 @@ button,input{font:inherit}.page{display:none;min-height:100svh;padding:36px 18px
 <div id="countdownClock">00:00:00</div>
 <div class="timer"><div class="time-box"><strong id="days">00</strong><small>DAYS</small></div><div class="time-box"><strong id="hours">00</strong><small>HOURS</small></div><div class="time-box"><strong id="minutes">00</strong><small>MINUTES</small></div><div class="time-box"><strong id="seconds">00</strong><small>SECONDS</small></div></div>
 <p id="timerMessage">A friendship full of memories deserves a surprise full of love. 💌</p>
+<button class="btn hidden" id="showSurpriseButton" type="button">🎁 Show the Surprise!</button>
 
 
 </section>
@@ -148,21 +149,26 @@ const photos = [
 const $=id=>document.getElementById(id);
 function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
 function updateTimer(){
- const diff=new Date(BIRTHDAY).getTime()-Date.now();
- if(diff<=0){
-    ["days","hours","minutes","seconds"].forEach(id=>$(id).textContent="00");
-    $("countdownClock").textContent="00:00:00";
-    $("timerMessage").textContent="It's your special day! Your surprise is ready, Geeta! 💛";
-    if (!window.surpriseOpened) {
-      window.surpriseOpened = true;
-      showPage(2);
-      confettiHugs();
-    }
-    return;
-  }
- const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
- $("days").textContent=String(d).padStart(2,"0");$("hours").textContent=String(h).padStart(2,"0");$("minutes").textContent=String(m).padStart(2,"0");$("seconds").textContent=String(s).padStart(2,"0");
- $("countdownClock").textContent=`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+ const diff = new Date(BIRTHDAY).getTime() - Date.now();
+
+ if (diff <= 0) {
+   ["days", "hours", "minutes", "seconds"].forEach(id => $(id).textContent = "00");
+   $("countdownClock").textContent = "00:00:00";
+   $("timerMessage").textContent = "It's your special day! Your surprise is ready, Geeta! 💛";
+   $("showSurpriseButton").classList.remove("hidden");
+   return;
+ }
+
+ const d = Math.floor(diff / 86400000);
+ const h = Math.floor(diff % 86400000 / 3600000);
+ const m = Math.floor(diff % 3600000 / 60000);
+ const s = Math.floor(diff % 60000 / 1000);
+
+ $("days").textContent = String(d).padStart(2, "0");
+ $("hours").textContent = String(h).padStart(2, "0");
+ $("minutes").textContent = String(m).padStart(2, "0");
+ $("seconds").textContent = String(s).padStart(2, "0");
+ $("countdownClock").textContent = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 let selected=0,rotation=0,autoRotate=true,dragging=false,lastX=0,dragMoved=false,lastTime=0;
 function renderOrbit(){const root=$("orbitCards");root.replaceChildren();photos.forEach((photo,i)=>{const card=document.createElement("button");card.type="button";card.className="orbit-card";const img=document.createElement("img");img.src=photo.src;img.alt=photo.caption;img.draggable=false;card.appendChild(img);card.addEventListener("click",()=>{if(!dragMoved)selectPhoto(i)});root.appendChild(card)});positionOrbit();}
@@ -171,6 +177,7 @@ function selectPhoto(i){selected=(i+photos.length)%photos.length;const photo=pho
 function animate(t){if(!lastTime)lastTime=t;const dt=Math.min(t-lastTime,50);lastTime=t;if(autoRotate&&!dragging&&$("page2").classList.contains("active")){rotation+=dt*.00022;positionOrbit()}requestAnimationFrame(animate);}
 function confettiHugs(){const emojis=["🤗","🫂","💛","💖","✨","🎉"];for(let i=0;i<18;i++){const e=document.createElement("span");e.className="floaty";e.textContent=emojis[Math.floor(Math.random()*emojis.length)];e.style.left=Math.random()*100+"vw";e.style.fontSize=20+Math.random()*24+"px";e.style.animationDuration=3+Math.random()*3+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
 
+$("showSurpriseButton").addEventListener("click",()=>{showPage(2);confettiHugs()});
 $("toQuizButton").addEventListener("click",()=>showPage(3));$("prevPhoto").addEventListener("click",()=>selectPhoto(selected-1));$("nextPhoto").addEventListener("click",()=>selectPhoto(selected+1));
 $("pauseOrbit").addEventListener("click",()=>{autoRotate=!autoRotate;$("pauseOrbit").textContent=autoRotate?"Pause orbit ⏸":"Resume orbit ▶"});
 $("orbitWrap").addEventListener("pointerdown",e=>{dragging=true;dragMoved=false;lastX=e.clientX;$("orbitWrap").setPointerCapture(e.pointerId)});
